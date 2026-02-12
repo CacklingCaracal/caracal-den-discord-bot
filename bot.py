@@ -13,9 +13,9 @@ from typing import Optional, Tuple
 # CONFIG
 # ===============================
 
-TOKEN = pretend token data # <-- paste your real token here
+TOKEN =   # <-- paste your real token here
 
-GUILD_ID = 1379648676556968076
+GUILD_ID = 
 DATA_FILE = "userdata.json"
 # ===============================
 # USER DATA STORAGE
@@ -147,6 +147,38 @@ def parse_todo_items(raw: str):
         return []
     return [item.strip() for item in re.split(r"[,\n;]+", raw) if item.strip()]
 
+def update_user_todo(user_id: int, query: str, new_text: str):
+    """Update an item by index or exact (case-insensitive) text. Returns (old, new, list) or (None, None, list)."""
+    data = load_data()
+    todos = data.setdefault("todos", {}).setdefault(str(user_id), [])
+    if not todos:
+        return None, None, []
+
+    new_text = new_text.strip()
+    if not new_text:
+        return None, None, todos
+
+    # Index update
+    if re.fullmatch(r"\d+", query.strip()):
+        idx = int(query.strip()) - 1
+        if 0 <= idx < len(todos):
+            old = todos[idx]
+            todos[idx] = new_text
+            save_data(data)
+            return old, new_text, todos
+        return None, None, todos
+
+    # Text update (first case-insensitive match)
+    lower_query = query.strip().lower()
+    for i, item in enumerate(todos):
+        if item.lower() == lower_query:
+            old = todos[i]
+            todos[i] = new_text
+            save_data(data)
+            return old, new_text, todos
+
+    return None, None, todos
+
 # ===============================
 # CHARACTER LIST (single source of truth)
 # ===============================
@@ -180,9 +212,9 @@ REWARD_LINES = {
         "You're doing such a good job today {user}. Good {identity} get treats so, cmere."
     ],
     "kent": [
-        "You handled that with discipline, {user}. Headpat earned.",
+        "You handled that with discipline, {user}.",
         "Excellent work, {user}. At ease, and enjoy a little rest.",
-        "Mission accomplished, {user}. Stand tall for this headpat.",
+        "Mission accomplished, {user}.",
         "Top notch completion of your task. I'm honored to present you with these headpats, {user}.",
         "Your resolve and commitment to the objective is most admirable. C'mere, stand down {user}. You've done well.",
         "Outstanding execution, {user}. Consider this commendation delivered.",
@@ -193,7 +225,8 @@ REWARD_LINES = {
     "maru": [
         "Fantastic work, {user}. Your effort really shows.",
         "The data results never lie, and they say you have been very successful {user}, how excellent!",
-        "Your results are stellar, {user}. Lab-approved headpats!",
+        "Your results are stellar, {user}!",
+        "Lab-approved headpats for your great job {user!",
         "Systems check complete—{user} is thriving. Nice job!",
         "Hypothesis confirmed: {user} gets things done. Headpats secured.",
         "That was beautifully executed, {user}. I'm logging this win."
@@ -269,7 +302,9 @@ REWARD_LINES = {
         "Couldn't be prouder of you, {user}; truly my everlasting firelight!",
         "That was slick, {user}. Stealing all the coolness points from the competition today, huh?",
         "You keep leveling up, {user}. Absolute star.",
-        "Mission: crushed, like a pancake - or a crepe! Crepe it up, {user}."
+        "Mission: crushed, like a pancake - or a crepe! Crepe it up, {user}.",
+        "What a perfect job you did on that {user}",
+        "You work so hard {user}, I'm so proud of you for getting that done."
        
     ],
     "sterling": [
@@ -278,7 +313,9 @@ REWARD_LINES = {
         "Sterling lifts you in a big hug. 'You did the thing, {user}! Headpats deluxe.'",
         "Massive dub, {user}. You earned VIP headpats.",
         "Look at you, {user}—pulling off miracles like it's casual.",
-        "You did the dang thing, {user}. So proud of you."
+        "You did the dang thing, {user}. So proud of you.",
+        "I'll never get over how amazing you are {user}",
+        "It makes me so happy to see you accomplish things like that {user}"
     ],
     "krobus": [
         "{user}, this is a very commendable job you have done in the completing of your task!",
@@ -330,7 +367,8 @@ COMFORT_LINES = {
         "Slow, steady breaths. You're home now, {user}.",
         "You're off duty, {user}. Rest those shoulders.",
         "Stay grounded with me, {user}. I've got watch.",
-        "You're among allies, {user}. Let yourself settle."
+        "You're among allies, {user}. Let yourself settle.",
+        "You are safe and you are cared for, {user}. Let me be your shield for a while."
     ],
     "maru": [
         "You're doing your best, {user}. I'm proud of you.",
@@ -362,7 +400,10 @@ COMFORT_LINES = {
         "Scoot closer, {user}. We can ride this out together.",
         "We can just listen to the rain, {user}. No words needed.",
         "I'll keep the screens dim for you, {user}. Rest here.",
-        "Lean on my shoulder, {user}. I'll stay as long as you need."
+            "Lean on my shoulder, {user}. I'll stay as long as you need.",
+            "Lemme wrap you up in my hoodie {user}",
+            "I know things can be overwhelming, {user}. I'm here to help you carry it.",
+            "If I could I'd CTRL+AlT+DEL your worries away, {user}. But for now, just lean on me."
     ],
     "abigail": [
         "Bad day? I got you, {user}.",
@@ -409,6 +450,8 @@ COMFORT_LINES = {
         "Hey, {user}, we can wait it out together I've got snacks and everything.",
         "Come closer, {user}. Lemme kiss away some of that doom and gloom.",
         "Slide into my arms, {user}. We'll wait this one out in style.",
+        "Cuddle puddle time {user}!",
+        "Between the blankets and my bad jokes we can get through anything {user}."
         "I promised to take good care of your heart {user}, and I never go back on a promise.",
         "If you're struggling to keep your chin up, let me help. I love holding your face in my hands."
     ],
@@ -558,7 +601,7 @@ BUTT_PAT_LINES = {
         "pats your ass, then spins you. 'That'll flip any frown, {user}.'",
         "gives a lazy smack and purrs, 'Vintage peach, {user}.'",
         "grabs your cheeks hard to lift you up a little with a grin as they paw at you. 'Quality control passed, {user}.'",
-        "'s claws drag lightly along your ass as he gives it a solid slap, then hoisting you up legs around their torso."
+        "'s claws drag lightly along your ass as they gives it a solid slap, then hoisting you up legs around their torso."
     ],
     "sterling": [
         "flashes a grin as he winds up his hand. '{user} your ass is too fine to *not* smack right now!'",
@@ -611,7 +654,7 @@ FOREHEAD_KISSES = {
         "mutters 'c'mere,' presses his forehead to yours, then leaves a soft kiss there.",
         "bumps your shoulder, looks away, and plants a quick kiss on your brow with a half-smile.",
         "sighs, hooks an arm around you, and gives a steady forehead kiss that smells faintly of beer and warmth.",
-        "He tugs your hood up, hides you from the world, and sneaks a gentle kiss to your forehead."
+        "tugs your hood up, hides you from the world, and sneaks a gentle kiss to your forehead."
     ],
     "kent": [
         "rests a steady hand on your shoulder before leaning in to kiss your forehead—careful, protective, grounding.",
@@ -658,9 +701,9 @@ FOREHEAD_KISSES = {
         "glances up from his computer and immediately reaches to pull you into his lap cradling you and kissing your forehead tenderly.",
         "wraps you in his hoodie before pulling you close and sweetly kissing your nose before moving to your forehead.",
         "pauses his game, lowers his headset, and gives your forehead a lingering kiss like a checkpoint save.",
-        "He tugs his hoodie over both of you, pressing a secret kiss to your forehead in the dark.",
+        "tugs his hoodie over both of you, pressing a secret kiss to your forehead in the dark.",
         "scribbles a tiny heart on your hand, then follows it with a soft forehead kiss.",
-        "He meets your eyes, blushes, and kisses your forehead like he's downloading courage."
+        "meets your eyes, blushes, and kisses your forehead like he's downloading courage."
     ],
     "abigail": [
         "jumps closer and plants an energetic, affectionate kiss right in the center of your forehead.",
@@ -724,18 +767,18 @@ FOREHEAD_KISSES = {
         "snags you by the shoulders and boops your nose, then pulls you in to kiss your forehead.",
         "nuzzles you gently as he hugs you tight and gives lots of little forehead kisses.",
         "salutes, then swoops down to plant a bold kiss on your forehead.",
-        "He peppers your forehead with rapid-fire kisses until you're giggling.",
+        "covers your forehead with rapid-fire kisses until you're giggling.",
         "lifts you half off the ground, kisses your brow, and spins you once for flair.",
-        "He cups your face, grins, and leaves a slow, affectionate kiss on your forehead."
+        "cups your face, grins, and leaves a slow, affectionate kiss on your forehead."
     ],
     "krobus": [
         "makes a soft noise and beckons you closer, clearly wanting to offer comfort/support. ",
         "rests his forehead against yours before pressing a kiss there.",
         "shyly presses a featherlight kiss to your forehead, the shadows humming their approval.",
         "softly asks permission, then delivers a careful kiss to your forehead, eyes glowing.",
-        "He cups your face with cool hands, placing a reverent kiss right between your brows.",
+        "cups your face with cool hands, placing a reverent kiss right between your brows.",
         "hums low, pressing a lingering kiss to your forehead that leaves a warmth in the dark.",
-        "He shields you with his cloak of shadows, then kisses your brow like a quiet blessing."
+        "shields you with his cloak of shadows, then kisses your brow like a quiet blessing."
     ],
     "emily": [
         "presses a warm kiss to your forehead, whispering soft encouragements when she pulls away.",
@@ -944,72 +987,44 @@ MORRIS_PRAISE_LINES = [
 # Reminder confirmation + reminder “ping” lines.
 # You can keep these short and snappy. Missing characters will fall back to DEFAULT.
 REMINDERSET_CONFIRMATION_LINES = {
-    "sam": ["You got it {user}, I'll remind you!"],
-    "shane": ["...Yeah. I can do that, {user}."],
-    "kent": ["Understood, {user}. I'll remind you."],
-    "maru": ["I suppose just this once, I could be *your* assistant."],
-    "haley": ["Okayyy {user}, I'll remind you~"],
-    "marlon": ["Very well, {user}. I'll see it done."],
-    "sebastian": ["Fine. I'll ping you, {user}."],
-    "abigail": ["Got it, {user}! Reminder quest accepted!"],
-    "alex": ["You got it, {user}. I'll keep you on track!"],
-    "morris": ["Fine. I'll remind you, {user}. Don't make a habit of it."],
-    "harvey": ["Of course, {user}. I'll remind you."],
-    "gunther": ["Cataloged, {user}. I'll remind you."],
-    "val": ["Say less, {user}. I got you."],
-    "sterling": ["Absolutely, {user}. I'm on it."],
-    "krobus": ["Yes, {user}. I will remind you gently."],
-    "emily": ["Totally, {user}! I'll remind you with good vibes!"],
-    "penny": ["Okay, {user}. I'll remind you."],
+    "sam": ["You got it {user}, I'll remind you!", "On it, {user}! I got your back.", "Heck yes, {user} - reminder locked in."],
+    "shane": ["...Yeah. I can do that, {user}.", "Sure. I'll remind you, {user}.", "Fine. Timer's set, {user}."],
+    "kent": ["Understood, {user}. I'll remind you.", "Acknowledged, {user}. Reminder scheduled.", "Copy that, {user}. I'll alert you on time."],
+    "maru": ["I suppose just this once, I could be *your* assistant.", "Reminder configured, {user}.", "Done. Your reminder is now active, {user}."],
+    "haley": ["Okayyy {user}, I'll remind you~", "Yep yep, {user} - I'll ping you!", "Cute little reminder set for you, {user}!"],
+    "marlon": ["Very well, {user}. I'll see it done.", "It shall be done, {user}.", "Your reminder is set, {user}. Stay sharp."],
+    "sebastian": ["Fine. I'll ping you, {user}.", "Yeah, okay. Reminder set, {user}.", "I'll nudge you when it's time, {user}."],
+    "abigail": ["Got it, {user}! Reminder quest accepted!", "Quest log updated, {user}! I'll remind you!", "Let's go! Reminder set, {user}!"],
+    "alex": ["You got it, {user}. I'll keep you on track!", "No worries, {user}. Reminder set.", "I'm on it, {user}. I'll give you a heads-up."],
+    "morris": ["Fine. I'll remind you, {user}. Don't make a habit of it.", "Noted, {user}. Reminder scheduled.", "Very well, {user}. Expect a prompt at the appointed time."],
+    "harvey": ["Of course, {user}. I'll remind you.", "Certainly, {user}. I'll check in when it's time.", "Reminder set, {user}. You've got this."],
+    "gunther": ["Cataloged, {user}. I'll remind you.", "Recorded, {user}. The reminder is preserved.", "Filed and set, {user}. I will notify you."],
+    "val": ["Say less, {user}. I got you.", "Bet, {user}. Reminder is set.", "Done deal, {user}. I'll ping you right on time."],
+    "sterling": ["Absolutely, {user}. I'm on it.", "You got it, {user}. Reminder set.", "Easy work, {user} - I'll hit you with a reminder."],
+    "krobus": ["Yes, {user}. I will remind you gently.", "I will remember for you, {user}.", "It is set, {user}. I will call softly when time comes."],
+    "emily": ["Totally, {user}! I'll remind you with good vibes!", "Yesss {user}! Reminder magic activated!", "Done, {user}! I'll send a bright little nudge."],
+    "penny": ["Okay, {user}. I'll remind you.", "Of course, {user}. Reminder is set.", "I have it noted, {user}. I'll let you know."],
 }
 
 REMINDER_LINES = {
-    "sam": ["Hey {user}—reminder time!", "Pssst—time's up, {user}.", "Okay! Reminder time, {user}."],
-    "shane": ["Alright, {user}. Time.", "You wanted a reminder, {user}. Here.", "Time's up. Do the thing, {user}."],
-    "kent": ["Reminder, {user}. Execute the task.", "Time's up, {user}. Stay on mission.", "Scheduled reminder for you, {user}."],
-    "maru": ["Reminder triggered, {user}.", "Your timer completed, {user}.", "Beep boop—reminder time, {user}."],
-    "haley": ["Okayyy {user}, it's time!", "Reminder time, {user}!", "Don't forget, {user}."],
-    "marlon": ["Time, {user}. Don't leave it undone.", "Reminder: now, {user}.", "You asked. I deliver, {user}."],
-    "sebastian": ["…reminder, {user}.", "Timer's up, {user}.", "Hey. Do the thing, {user}."],
-    "abigail": ["Quest reminder! {user}!", "Timer finished, {user}!", "Reminder drop: right now, {user}!"],
-    "alex": ["C'mon {user}, it's go time!", "Reminder time, champ—{user}!", "Timer's up, {user}!"],
-    "morris": ["Reminder, {user}. Efficiency awaits.", "Time's up, {user}.", "Proceed, {user}."],
-    "harvey": ["Gentle reminder, {user}.", "Time's up, {user}. You've got this.", "Reminder check-in, {user}."],
-    "gunther": ["Reminder logged in the ledger, {user}.", "Dust off that task, {user}. Time to act.", "The clock chimes for you, {user}. Attend to it."],
-    "val": ["Hey {user}, reminder time!", "Timer's up, {user}.", "Do the thing, {user}—I believe in you."],
-    "sterling": ["Yo {user}! Reminder time!", "Timer's up, {user}!", "I'm here to remind you, {user}."],
-    "krobus": ["{user}, it is time. I will be brave with you.", "Reminder time, {user}.", "A gentle ping for you, {user}."],
-    "emily": ["Sparkly reminder time, {user}!", "Timer's done, {user}!", "Hey {user}—your reminder just bloomed!"],
-    "penny": ["{user}, it's time.", "Reminder time, {user}.", "A little reminder for you, {user}."],
+    "sam": ["Hey {user}—reminder time!", "Pssst—time's up, {user}.", "Okay! Reminder time, {user}.", "Yo {user}, clock says go time!", "Heads up, {user} - now's the moment."],
+    "shane": ["Alright, {user}. Time.", "You wanted a reminder, {user}. Here.", "Time's up. Do the thing, {user}.", "Hey. {user}. It's time.", "Reminder's here, {user}. Let's get it done."],
+    "kent": ["Reminder, {user}. Execute the task.", "Time's up, {user}. Stay on mission.", "Scheduled reminder for you, {user}.", "Operational notice: begin now, {user}.", "Move out, {user}. It's time."],
+    "maru": ["Reminder triggered, {user}.", "Your timer completed, {user}.", "Beep boop—reminder time, {user}.", "Signal received: act now, {user}.", "Automated nudge deployed, {user}."],
+    "haley": ["Okayyy {user}, it's time!", "Reminder time, {user}!", "Don't forget, {user}.", "Hey cutie, go do the thing, {user}!", "Your timer is sooo done, {user}."],
+    "marlon": ["Time, {user}. Don't leave it undone.", "Reminder: now, {user}.", "You asked. I deliver, {user}.", "The hour is upon you, {user}.", "Stand and act, {user}."],
+    "sebastian": ["…reminder, {user}.", "Timer's up, {user}.", "Hey. Do the thing, {user}.", "Your reminder fired, {user}.", "Time to handle it, {user}."],
+    "abigail": ["Quest reminder! {user}!", "Timer finished, {user}!", "Reminder drop: right now, {user}!", "Boss battle time, {user}!", "Power-up and go, {user}!"],
+    "alex": ["C'mon {user}, it's go time!", "Reminder time, champ—{user}!", "Timer's up, {user}!", "Let's move, {user} - you're up!", "Time to crush it, {user}!"],
+    "morris": ["Reminder, {user}. Efficiency awaits.", "Time's up, {user}.", "Proceed, {user}.", "Your schedule indicates immediate action, {user}.", "Reminder delivered. Begin, {user}."],
+    "harvey": ["Gentle reminder, {user}.", "Time's up, {user}. You've got this.", "Reminder check-in, {user}.", "Just a quick nudge, {user}: now is a good time.", "Your planned time has arrived, {user}."],
+    "gunther": ["Reminder logged in the ledger, {user}.", "Dust off that task, {user}. Time to act.", "The clock chimes for you, {user}. Attend to it.", "An archival nudge: now is the hour, {user}.", "The record calls you to action, {user}."],
+    "val": ["Hey {user}, reminder time!", "Timer's up, {user}.", "Do the thing, {user}—I believe in you.", "Your cue just dropped, {user}.", "Let's go, {user}. You got this."],
+    "sterling": ["Yo {user}! Reminder time!", "Timer's up, {user}!", "I'm here to remind you, {user}.", "Bell rang, {user}. Time to move.", "Ayy {user}, go hit that task now."],
+    "krobus": ["{user}, it is time. I will be brave with you.", "Reminder time, {user}.", "A gentle ping for you, {user}.", "The moment has come, {user}.", "I am beside you, {user}. Begin now."],
+    "emily": ["Sparkly reminder time, {user}!", "Timer's done, {user}!", "Hey {user}—your reminder just bloomed!", "Shine on, {user}! It's time!", "Little cosmic nudge: go now, {user}!"],
+    "penny": ["{user}, it's time.", "Reminder time, {user}.", "A little reminder for you, {user}.", "Whenever you're ready, {user} - now is a good moment.", "Your timer finished, {user}. You can do this."],
 }
-
-BAO_TYPES = [
-    "small **pork bun**",
-    "fluffy **chicken bun**",
-    "tender **beef bun**",
-    "savory **char siu bun**",
-    "sweet **red bean bun**",
-    "warm **custard bun**",
-    "cozy **taro bun**",
-    "sticky **sesame bun**",
-    "soft **vegetable bun**",
-    "spicy **kimchi bun**",
-    "rich **curry bun**",
-    "scrumptious **shrimp bun**",
-]
-
-COFFEE_TYPES = [
-    "classic **drip coffee**",
-    "rich **espresso**",
-    "smooth **latte**",
-    "creamy **cappuccino**",
-    "sweet **mocha**",
-    "cozy **hazelnut latte**",
-    "spiced **chai latte**",
-    "bold **americano**",
-    "caramel **macchiato**",
-    "iced **cold brew**",
-]
 
 # ===============================
 # UTILS
@@ -1120,8 +1135,13 @@ def extras_help():
         "`!buhh`\n\n"
         "**!todo** — Add items to your personal list\n"
         "`!todo take meds, stretch, drink water`\n"
+        "**!addtodo** — Same as !todo (alias)\n"
+        "`!addtodo call mom; send email`\n"
         "**!checktodo** — View your list\n"
         "`!checktodo`\n"
+        "**!updatetodo** — Edit an item by number or text\n"
+        "`!updatetodo 4 -> 2 miniatures`\n"
+        "`!updatetodo miniatures to paint -> 2 miniatures`\n"
         "**!crossoff** — Remove by number or exact text\n"
         "`!crossoff 2` or `!crossoff take meds`\n\n"
         "**!bap** — Break enforcement (restricted)\n"
@@ -1130,18 +1150,6 @@ def extras_help():
         "**!faq** — Mod support checklist\n"
         "`!faq`\n"
         "Sebastian will remind you to grab the latest Nexus version, include your SMAPI log, and post it to #fleas-and-tix."
-    )
-
-def cafe_help():
-    return (
-        "**☕ Headpats Bot Guide — Cafe ☕**\n\n"
-        "**!bao** — Random bun from Gus\n"
-        "`!bao`\n"
-        "`!bao custard`\n\n"
-        "**!coffee** — Coffee by Gus\n"
-        "`!coffee`\n"
-        "`!coffee latte`\n"
-        "Gus will serve the requested drink if available, otherwise offers a tasty alternate."
     )
 
 # ===============================
@@ -1385,14 +1393,6 @@ async def guideonextras_cmd(ctx: commands.Context):
         header = f"**✨ Headpats Bot Guide ✨ (page {i}/{total})**\n\n" if i > 1 else ""
         await ctx.send(header + part)
 
-@bot.command(name="cafeguide")
-async def cafeguide_cmd(ctx: commands.Context):
-    parts = chunk_text(cafe_help())
-    total = len(parts)
-    for i, part in enumerate(parts, start=1):
-        header = f"**✨ Headpats Bot Guide ✨ (page {i}/{total})**\n\n" if i > 1 else ""
-        await ctx.send(header + part)
-
 @bot.command(name="thefuture")
 async def thefuture_cmd(ctx: commands.Context):
     image_path = "TheFuture.png"
@@ -1426,17 +1426,6 @@ async def giggity_cmd(ctx: commands.Context):
     else:
         await ctx.send("Image missing on the server. Ping an admin to restore giggity.png.")
 
-@bot.command(name="scram")
-async def scram_cmd(ctx: commands.Context):
-    # Sheriff Bill (Pelican Town Municipal Mod) with a friendly Mayberry drawl.
-    line = "Sheriff Bill drawls, \"If y'all could make a thread and mosey on over there please and thankya kindly.\""
-    await ctx.send(line)
-
-@bot.command(name="movealong")
-async def movealong_cmd(ctx: commands.Context):
-    # Sheriff Bill nudge to change subjects.
-    line = "Sheriff Bill tips his hat, \"Alrighty folks, let's pick a new topic better fit for polite conversation.\""
-    await ctx.send(line)
 
 @bot.command(name="maulme")
 async def maulme_cmd(ctx: commands.Context):
@@ -1614,45 +1603,9 @@ async def bap_cmd(ctx: commands.Context, character: str = None):
     await ctx.send(f"**{npc.title()}** {line.format(user=nickname)}")
 
 
-@bot.command(name="bao")
-async def bao_cmd(ctx: commands.Context, *, requested: str = None):
-    if requested:
-        req = requested.strip().lower()
-        match = None
-        for b in BAO_TYPES:
-            if req in b.lower():
-                match = b
-                break
-        if match:
-            article = indefinite_article(match)
-            return await ctx.send(f"**Gus** hands you {article} {match}. \"Fresh from the kitchen—enjoy!\"")
-        bun = random.choice(BAO_TYPES)
-        article = indefinite_article(bun)
-        return await ctx.send(f"**Gus** hands you {article} {bun}. \"I'm out of {requested}, but try this instead!\"")
-
-    bun = random.choice(BAO_TYPES)
-    article = indefinite_article(bun)
-    await ctx.send(f"**Gus** hands you {article} {bun}. \"On the house.\"")
-
-@bot.command(name="coffee")
-async def coffee_cmd(ctx: commands.Context, *, requested: str = None):
-    if requested:
-        req = requested.strip().lower()
-        match = None
-        for c in COFFEE_TYPES:
-            if req in c.lower():
-                match = c
-                break
-        if match:
-            article = indefinite_article(match)
-            return await ctx.send(f"**Gus** hands you {article} {match}. \"Steaming and fresh—enjoy!\"")
-        cup = random.choice(COFFEE_TYPES)
-        article = indefinite_article(cup)
-        return await ctx.send(f"**Gus** hands you {article} {cup}. \"Out of {requested}, but try this one—you'll love it.\"")
-
-    cup = random.choice(COFFEE_TYPES)
-    article = indefinite_article(cup)
-    await ctx.send(f"**Gus** hands you {article} {cup}. \"House special, just for you.\"")
+@bot.command(name="gender")
+async def gender_cmd(ctx: commands.Context):
+    await ctx.send("**Val** It's 'they' dammit!")
 
 @bot.command(name="buttpats")
 async def buttpats_cmd(ctx: commands.Context, character: str = None):
@@ -1722,6 +1675,37 @@ async def todo_cmd(ctx: commands.Context, *, items: str = None):
 async def checktodo_cmd(ctx: commands.Context):
     todos = get_user_todos(ctx.author.id)
     await ctx.send(f"Your to-do list, {ctx.author.mention}:\n{format_todo_list(todos)}")
+
+@bot.command(name="addtodo")
+async def addtodo_cmd(ctx: commands.Context, *, items: str = None):
+    # Simple alias to !todo for users who prefer the name.
+    return await todo_cmd(ctx, items=items)
+
+@bot.command(name="updatetodo")
+async def updatetodo_cmd(ctx: commands.Context, *, message: str = None):
+    """
+    Usage examples:
+      !updatetodo 3 -> 2 miniatures
+      !updatetodo miniatures to paint -> 2 miniatures
+    """
+    if not message or "->" not in message:
+        return await ctx.send(
+            "**Usage:** `!updatetodo 3 -> new text` or `!updatetodo old text -> new text`"
+        )
+
+    before, after = message.split("->", 1)
+    query = before.strip()
+    new_text = after.strip()
+    old, new, todos = update_user_todo(ctx.author.id, query, new_text)
+
+    if old:
+        await ctx.send(
+            f"Updated **{old}** ➜ **{new}**.\nCurrent list:\n{format_todo_list(todos)}"
+        )
+    else:
+        await ctx.send(
+            "I couldn't find that entry. Use the number from `!checktodo` or the exact text."
+        )
 
 @bot.command(name="crossoff")
 async def crossoff_cmd(ctx: commands.Context, *, item: str = None):
