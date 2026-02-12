@@ -13,7 +13,7 @@ from typing import Optional, Tuple
 # CONFIG
 # ===============================
 
-TOKEN = "MTQ0MzE5MzkyNDI3NjcxOTY4Ng.GeQfRK.F1QWqS9Z1287Z-WX6M4seN60v2nhSb3jJui1Zk"  # <-- paste your real token here
+TOKEN = pretend token data # <-- paste your real token here
 
 GUILD_ID = 1379648676556968076
 DATA_FILE = "userdata.json"
