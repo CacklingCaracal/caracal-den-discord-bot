@@ -209,7 +209,11 @@ REWARD_LINES = {
         "Hell yeah {user}, showing that task who's boss.",
         "I see how hard you're working {user}. You're doing better than you might think.",
         "You pushed through, {user}. Let's celebrate with a drink—on me.",
-        "You're doing such a good job today {user}. Good {identity} get treats so, cmere."
+        "You're doing such a good job today {user}. Good {identity} get treats so, cmere.",
+        "You kept going when it was hard, {user}. That matters.",
+        "Look at you, {user}. You did the thing and I am proud of you.",
+        "That took effort, {user}. Come here and get your headpats.",
+        "You are doing better than you think, {user}. Keep it up."
     ],
     "kent": [
         "You handled that with discipline, {user}.",
@@ -219,7 +223,7 @@ REWARD_LINES = {
         "Your resolve and commitment to the objective is most admirable. C'mere, stand down {user}. You've done well.",
         "Outstanding execution, {user}. Consider this commendation delivered.",
         "You've done extremely well to get that done {user}",
-        "Top notch, {user}, I'd expect nothing less."
+        "Top notch, {user}, I'd expect nothing less.",
         "Shall *I* drop and give you 20 as a reward for such a good job {user?}. 20 what? Squats, pushups, time between your thighs?"
     ],
     "maru": [
@@ -253,7 +257,11 @@ REWARD_LINES = {
         "Okay, wow. That was impressive, {user}. Headpat time.",
         "After that, you deserve mega experience points, {user}.",
         "You actually finished it? Sweet. Proud of you, {user}.",
-        "Effort level: legendary. Come get these headpats, {user}."
+        "Effort level: legendary. Come get these headpats, {user}.",
+        "Quest cleared, {user}. Reward screen says: headpats unlocked.",
+        "Nice work, {user}. You min-maxed your way through that task.",
+        "You pulled it off, {user}. That is S-tier follow-through.",
+        "Task complete, {user}. Come claim your post-raid headpats."
     ],
     "abigail": [
         "Nice job, {user}! Headpat reward unlocked!",
@@ -304,13 +312,16 @@ REWARD_LINES = {
         "You keep leveling up, {user}. Absolute star.",
         "Mission: crushed, like a pancake - or a crepe! Crepe it up, {user}.",
         "What a perfect job you did on that {user}",
-        "You work so hard {user}, I'm so proud of you for getting that done."
+        "You work so hard {user}, I'm so proud of you for getting that done.",
+        "That was gorgeous execution, {user}. They are absolutely obsessed with your follow-through.",
+        "You brought the heat and the heart, {user}. That's iconic.",
+        "Val-approved excellence right there, {user}. Come collect your praise."
        
     ],
     "sterling": [
         "*Borat impression* Great success! But forreal I'm mega proud of you {user}",
         "Royal {user}, you nailed it.'",
-        "Sterling lifts you in a big hug. 'You did the thing, {user}! Headpats deluxe.'",
+        "You did the thing, {user}! Headpats deluxe.",
         "Massive dub, {user}. You earned VIP headpats.",
         "Look at you, {user}—pulling off miracles like it's casual.",
         "You did the dang thing, {user}. So proud of you.",
@@ -351,7 +362,10 @@ COMFORT_LINES = {
         "Lean here a second, {user}. Let it out—I can take it.",
         "Even on the hard days, {user}, you're not facing it alone.",
         "I'm right beside you, {user}. No rush, just breathe.",
-        "I'll always be your player two, c'mere {user}"
+        "I'll always be your player two, c'mere {user}",
+        "You can crash here with me, {user}. No pressure, no expectations.",
+        "Hey, eyes on me {user}. You're safe, and I'm not letting go.",
+        "One step at a time, {user}. I'll match your pace."
     ],
     "shane": [
         "Rough day, huh {user}? …Yeah. I get it. Come here.",
@@ -359,7 +373,10 @@ COMFORT_LINES = {
         "Lean in, {user}. You don't have to talk—just stay close.",
         "I'll keep the world quiet for a minute, {user}.",
         "No fixes needed right now, {user}. Just let me hold you.",
-        "C'mere and let it out {user}. Let me be your safety."
+        "C'mere and let it out {user}. Let me be your safety.",
+        "Hey. You don't have to be okay right now, {user}. Just stay here with me.",
+        "I'll sit up with you as long as it takes, {user}. You're not a burden.",
+        "If today kicked your ass, {user}, then lean on me tonight."
     ],
     "kent": [
         "Stand easy, {user}. You're safe.",
@@ -403,7 +420,10 @@ COMFORT_LINES = {
             "Lean on my shoulder, {user}. I'll stay as long as you need.",
             "Lemme wrap you up in my hoodie {user}",
             "I know things can be overwhelming, {user}. I'm here to help you carry it.",
-            "If I could I'd CTRL+AlT+DEL your worries away, {user}. But for now, just lean on me."
+            "If I could I'd CTRL+AlT+DEL your worries away, {user}. But for now, just lean on me.",
+            "You can hide out with me tonight, {user}. No people, no noise, just us.",
+            "Come here, {user}. I'll keep the lights low and the world out.",
+            "If your head's too loud, {user}, borrow my quiet for a while."
     ],
     "abigail": [
         "Bad day? I got you, {user}.",
@@ -451,15 +471,18 @@ COMFORT_LINES = {
         "Come closer, {user}. Lemme kiss away some of that doom and gloom.",
         "Slide into my arms, {user}. We'll wait this one out in style.",
         "Cuddle puddle time {user}!",
-        "Between the blankets and my bad jokes we can get through anything {user}."
+        "Between the blankets and my bad jokes we can get through anything {user}.",
         "I promised to take good care of your heart {user}, and I never go back on a promise.",
-        "If you're struggling to keep your chin up, let me help. I love holding your face in my hands."
+        "If you're struggling to keep your chin up, let me help. I love holding your face in my hands.",
+        "Come here, {user}. They are wrapping you in all the softness you can stand.",
+        "You don't have to be brave for me, {user}. I can hold the heavy stuff with you.",
+        "We'll make a little sanctuary right here, {user}. They are not going anywhere."
     ],
     "sterling": [
         "{user}, I hate to see you so sour, lemme give you some sugar!",
         "don't worry {user} it can't rain all the time.",
         "C'mere, {user}. I'll keep you steady while it passes.",
-        "I'll be the umbrella; you stand over mkay {user}?",
+        "I'll be the umbrella you stand under mkay {user}?",
         "Squeeze in, {user}. I've got warmth and bad jokes on standby.",
         "You get the front row seat to my pep talk, {user}. Snuggle up."
     ],
@@ -515,7 +538,10 @@ BUTT_PAT_LINES = {
         "smirks, snaps his wrist, and lands a cheeky smack. 'Motivation delivered, {user}!'",
         "leans in close, pats your ass, and whispers, 'You know I've got your back, {user}.'",
         "pats twice and winks. 'Bonus boost for you, {user}.'",
-        "gives a gentle smack followed by a rub. 'You got this, {user}.'"
+        "gives a gentle smack followed by a rub. 'You got this, {user}.'",
+        "laughs and gives you a quick swat. 'Good game, {user}. Keep that momentum.'",
+        "gives you a playful pat and a bright grin. 'That's my MVP, {user}.'",
+        "slides in with a teasing double smack. 'Powered up and ready, {user}?'"
     ],
     "shane": [
         "'s palm lands with a warm thwap. 'You like that, {user}?'",
@@ -523,7 +549,10 @@ BUTT_PAT_LINES = {
         "smirks, pats your ass, and adds, 'Consider it a quality check, {user}.'",
         "taps twice, smirking. 'Back to it, {user}.'",
         "gives a slow, firm pat then squeezes. 'That's for being tough, {user}.'",
-        "smirks and hauls his hand back to smack your ass 'fuck {user} I love how your ass moves'"
+        "smirks and hauls his hand back to smack your ass 'fuck {user} I love how your ass moves'",
+        "gives a low chuckle and a heavy pat. 'Yeah, that's mine to encourage, {user}.'",
+        "smacks once, then keeps his hand there with a smug look. 'Keep moving, {user}.'",
+        "drags you close by the hips, swats your ass, and mutters, 'Good.'"
     ],
     "kent": [
         "'s gloved hand delivers a firm pat, controlled but undeniably bold.",
@@ -558,7 +587,10 @@ BUTT_PAT_LINES = {
         "gives a quick smack, cheeks flushing. 'Don't make it weird, {user}.'",
         "pats your ass gently, murmuring, 'Guess I'm braver today, {user}.'",
         "tugs you closer and delivers a shy tap. 'Don't tell anyone, {user}.'",
-        "gives a careful smack then buries his face in his hoodie. 'Yeah… you deserved that, {user}.'"
+        "gives a careful smack then buries his face in his hoodie. 'Yeah… you deserved that, {user}.'",
+        "slides behind you for a quick swat and mumbles, 'Motivation patch deployed, {user}.'",
+        "gives a shy double pat and looks away. 'You earned it, okay, {user}?'",
+        "hooks an arm around your waist, smacks your ass once, and pretends to focus on his keyboard."
     ],
     "abigail": [
         "lunges in with a mischievous grin and pats your ass—chaotic and affectionate.",
@@ -601,7 +633,14 @@ BUTT_PAT_LINES = {
         "pats your ass, then spins you. 'That'll flip any frown, {user}.'",
         "gives a lazy smack and purrs, 'Vintage peach, {user}.'",
         "grabs your cheeks hard to lift you up a little with a grin as they paw at you. 'Quality control passed, {user}.'",
-        "'s claws drag lightly along your ass as they gives it a solid slap, then hoisting you up legs around their torso."
+        "'s claws drag lightly along your ass as they gives it a solid slap, then hoisting you up legs around their torso.",
+        "circles behind you with a wicked grin and lands a playful smack. 'There, now you're sparkling, {user}.'",
+        "hooks their tail at your waist, pulls you close, and gives your ass a teasing double pat.",
+        "laughs low, palms your hip, and swats your ass.",
+        "traces their claws in a slow line over your hips before giving your ass a sharp, playful smack.",
+        "lets their claws rake lightly over your thighs, then gives your ass a possessive pat. 'Mine to spoil, {user}.'",
+        "hooks a claw under your chin with a grin, then drags their nails softly across your ass before a firm swat.",
+        "their claws ghost over your skin first, teasing, before they plant a solid slap on your ass."
     ],
     "sterling": [
         "flashes a grin as he winds up his hand. '{user} your ass is too fine to *not* smack right now!'",
@@ -644,7 +683,10 @@ FOREHEAD_KISSES = {
         "grins, tugs you under his chin, and drops a warm kiss onto your forehead.",
         "He tips your hat back and plants a confident kiss right in the center of your brow.",
         "ruffles your hair, pauses, then presses a quick, sincere forehead kiss with a blush.",
-        "He pulls you into a hoodie hug and gives you a forehead kiss that says 'I've got you.'"
+        "He pulls you into a hoodie hug and gives you a forehead kiss that says 'I've got you.'",
+        "laughs softly, squeezes your hand, and kisses your forehead like a promise.",
+        "pulls you in by the waist and places a fond kiss right above your brows.",
+        "rests his forehead to yours first, then leaves a slow, steady kiss there."
     ],
     "shane": [
         "cups your jaw with surprising tenderness and lets his lips brush your forehead, slow and warm.",
@@ -654,7 +696,10 @@ FOREHEAD_KISSES = {
         "mutters 'c'mere,' presses his forehead to yours, then leaves a soft kiss there.",
         "bumps your shoulder, looks away, and plants a quick kiss on your brow with a half-smile.",
         "sighs, hooks an arm around you, and gives a steady forehead kiss that smells faintly of beer and warmth.",
-        "tugs your hood up, hides you from the world, and sneaks a gentle kiss to your forehead."
+        "tugs your hood up, hides you from the world, and sneaks a gentle kiss to your forehead.",
+        "cups the back of your neck and kisses your forehead like he's grounding himself too.",
+        "leans down with a quiet, shaky exhale and leaves a kiss on your brow.",
+        "presses one thumb under your eye, then seals your forehead with a tender kiss."
     ],
     "kent": [
         "rests a steady hand on your shoulder before leaning in to kiss your forehead—careful, protective, grounding.",
@@ -703,7 +748,10 @@ FOREHEAD_KISSES = {
         "pauses his game, lowers his headset, and gives your forehead a lingering kiss like a checkpoint save.",
         "tugs his hoodie over both of you, pressing a secret kiss to your forehead in the dark.",
         "scribbles a tiny heart on your hand, then follows it with a soft forehead kiss.",
-        "meets your eyes, blushes, and kisses your forehead like he's downloading courage."
+        "meets your eyes, blushes, and kisses your forehead like he's downloading courage.",
+        "hooks a finger under your chin and leaves a careful kiss in the center of your brow.",
+        "pulls you closer by your hoodie strings and kisses your forehead with a quiet smile.",
+        "rests his temple to yours, then gives your forehead a slow, affectionate kiss."
     ],
     "abigail": [
         "jumps closer and plants an energetic, affectionate kiss right in the center of your forehead.",
@@ -758,7 +806,10 @@ FOREHEAD_KISSES = {
         "drags you into their chest and leaves a slow, burning kiss on your forehead.",
         "winks, taps your nose with a claw, then plants a smug kiss on your brow.",
         "They rumble a purr, pressing kiss after kiss across your forehead until you melt.",
-        "tilts your face up with their tail, then delivers a forehead kiss that feels like being chosen."
+        "tilts your face up with their tail, then delivers a forehead kiss that feels like being chosen.",
+        "cups your face in both hands and kisses your forehead like a vow.",
+        "presses their brow to yours first, then leaves a long, careful kiss right between your eyes.",
+        "draws you under their chin and scatters soft kisses across your forehead until you smile."
     ],
     "sterling": [
         "grins as he brings your forehead close for kisses.",
@@ -804,7 +855,13 @@ BUHH_PROMPTS = [
     "have you eaten recently?",
     "how long has it been since you had water?",
     "do you maybe need to get up and stretch?",
-    "how long has it been since you've done the sleeps?"
+    "how long has it been since you've done the sleeps?",
+    "do you need to take your meds?",
+    "let's try taking a deep breath. 3 counts in, 3 counts out.",
+    "maybe change gears and do something else for a while.",
+    "literally, go stand outside for 5 minutes. I know, but sunlight can actually be helpful.",
+    "maybe time for a shower or a rinse? Imagine it's washing the bad feelings away."
+
 ]
 
 PRESET_TASKS = {
@@ -842,7 +899,8 @@ CHARACTER_ACTIONS = {
         "rests his forehead to the back of your head and pets quietly",
         "tugs you closer by the hoodie and scratches softly at your scalp",
         "lets out a sigh and cards his fingers through your hair with care",
-        "presses his temple to yours, giving steady, grounding strokes"
+        "presses his temple to yours, giving steady, grounding strokes",
+        "nuzzles down against your neck, one arm coming around your waist to hold you close while he pets your hair gently."
     ],
     "kent": [
         "cups the back of your head and presses a soft forehead kiss",
@@ -1119,6 +1177,8 @@ def reminders_help():
         f"**Characters:** {characters}\n\n"
         "**!remindme** — Set a reminder (optional character)\n"
         "`!remindme maru in two hours to eat`\n"
+        "`!remindme in 1hr remind me I want to try doing this`\n"
+        "`!remindme in 1hr` (generic reminder)\n"
         "`!remindme maru to in two hours to eat` (yes this works)\n"
         "`!remindme me to eat in 1 hour`\n"
         "`!remindme in 30 minutes to stretch` (uses favorite)\n\n"
@@ -1189,13 +1249,13 @@ def _parse_duration(dur: str) -> Optional[float]:
     """
     dur = dur.strip().lower()
 
-    # compact forms: 1h, 90m, 30s, 2d
-    m = re.fullmatch(r"(?P<num>\d+(\.\d+)?)(?P<unit>[smhd])", dur)
+    # compact forms: 1h, 90m, 30s, 2d, 1hr, 2hours
+    m = re.fullmatch(r"(?P<num>\d+(\.\d+)?)(?P<unit>[a-z]+)", dur)
     if m:
         amt = float(m.group("num"))
         unit = m.group("unit")
-        unit_map = {"s": 1, "m": 60, "h": 3600, "d": 86400}
-        return amt * unit_map[unit]
+        if unit in _UNIT_SECONDS:
+            return amt * _UNIT_SECONDS[unit]
 
     # "1 hour and 30 minutes" -> split on "and"
     parts = [p.strip() for p in re.split(r"\s+and\s+", dur) if p.strip()]
@@ -1228,11 +1288,12 @@ def _short_delay(seconds: float) -> str:
 def parse_remindme(message: str) -> Optional[Tuple[Optional[str], float, str]]:
     """
     Accepts:
-      - [npc] in <duration> to <task>
-      - [npc] to in <duration> to <task>          (yes, "to in" works)
+      - [npc] in <duration> [to] <task>
+      - [npc] in <duration> remind me [to] <task>
+      - [npc] in <duration>                       (task defaults to "Reminder.")
+      - [npc] to in <duration> ...                (yes, "to in" works)
       - [npc] me to <task> in <duration>
-      - in <duration> to <task>                   (npc later from favorite)
-      - me to <task> in <duration>                (npc later from favorite)
+      - remind me to <task> in <duration>
     Returns: (npc_or_None, delay_seconds, task)
     """
     if not message:
@@ -1265,14 +1326,35 @@ def parse_remindme(message: str) -> Optional[Tuple[Optional[str], float, str]]:
             return None
         return npc, sec, task
 
-    # Case: "in <duration> to <task>"
-    m = re.match(r"^in\s+(?P<dur>.+?)\s+to\s+(?P<task>.+)$", msg, flags=re.IGNORECASE)
+    # Case: "remind me to <task> in <duration>"
+    m = re.match(r"^(?:remind\s+me\s+to\s+)?(?P<task>.+?)\s+in\s+(?P<dur>.+)$", msg, flags=re.IGNORECASE)
     if m:
-        dur = m.group("dur").strip()
         task = m.group("task").strip()
+        dur = m.group("dur").strip()
         sec = _parse_duration(dur)
-        if sec is None:
+        if sec is not None:
+            return npc, sec, task
+
+    # Case: "in <duration> [to] [remind me [to]] <task?>"
+    m = re.match(r"^in\s+(?P<rest>.+)$", msg, flags=re.IGNORECASE)
+    if m:
+        rest = m.group("rest").strip()
+        tokens = rest.split()
+        best = None  # (seconds, token_count)
+        for i in range(1, len(tokens) + 1):
+            dur_candidate = " ".join(tokens[:i])
+            sec = _parse_duration(dur_candidate)
+            if sec is not None:
+                best = (sec, i)
+
+        if best is None:
             return None
+
+        sec, used = best
+        remainder = " ".join(tokens[used:]).strip()
+        remainder = re.sub(r"^to\s+", "", remainder, flags=re.IGNORECASE)
+        remainder = re.sub(r"^remind\s+me(?:\s+to)?\s*", "", remainder, flags=re.IGNORECASE)
+        task = remainder.strip() or "Reminder."
         return npc, sec, task
 
     return None
@@ -1404,9 +1486,20 @@ async def thefuture_cmd(ctx: commands.Context):
 @bot.command(name="butt")
 async def butt_cmd(ctx: commands.Context):
     image_path = "shanebutt.png"
+    second_image_path = "shanebutt2.jpg"
     if os.path.exists(image_path):
         # Prefix filename with SPOILER_ so Discord hides the preview until clicked.
         await ctx.send(file=discord.File(image_path, filename=f"SPOILER_{os.path.basename(image_path)}"))
+        if os.path.exists(second_image_path):
+            await ctx.send(
+                "by smokerichi",
+                file=discord.File(
+                    second_image_path,
+                    filename=f"SPOILER_{os.path.basename(second_image_path)}"
+                )
+            )
+        else:
+            await ctx.send("Second image missing on the server. Ping an admin to restore shanebutt2.jpg.")
     else:
         await ctx.send("Image missing on the server. Ping an admin to restore TheFuture.png.")
 
@@ -1425,6 +1518,17 @@ async def giggity_cmd(ctx: commands.Context):
         await ctx.send(file=discord.File(image_path))
     else:
         await ctx.send("Image missing on the server. Ping an admin to restore giggity.png.")
+
+@bot.command(name="bodypillow")
+async def bodypillow_cmd(ctx: commands.Context):
+    image_path = "SuperSugarNovaShane.png"
+    if os.path.exists(image_path):
+        await ctx.send(
+            "from our own live laugh shane stardew valley",
+            file=discord.File(image_path)
+        )
+    else:
+        await ctx.send("Image missing on the server. Ping an admin to restore SUGARSUPERNOVASHANE.png.")
 
 
 @bot.command(name="maulme")
@@ -1520,6 +1624,8 @@ async def remindme_cmd(ctx: commands.Context, *, message: str = None):
         return await ctx.send(
             "**Usage:**\n"
             "- `!remindme maru in two hours to eat`\n"
+            "- `!remindme in 1hr remind me I want to try doing this`\n"
+            "- `!remindme in 1hr` (generic reminder)\n"
             "- `!remindme maru to in two hours to eat`\n"
             "- `!remindme me to eat in 1 hour`\n"
             "- `!remindme in 30 minutes to stretch` (uses favorite)\n"
@@ -1531,6 +1637,8 @@ async def remindme_cmd(ctx: commands.Context, *, message: str = None):
             "Couldn't parse that.\n"
             "Try:\n"
             "- `!remindme maru in two hours to eat`\n"
+            "- `!remindme in 1hr remind me I want to try doing this`\n"
+            "- `!remindme in 1hr`\n"
             "- `!remindme me to eat in 1 hour`\n"
             "- `!remindme in 30 minutes to stretch`\n"
         )
